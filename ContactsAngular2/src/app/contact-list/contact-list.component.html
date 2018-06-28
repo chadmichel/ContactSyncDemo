@@ -1,0 +1,43 @@
+<div>
+  <button mat-flat-button (click)="refresh()">Refresh</button>
+
+  <span>Total:</span>
+  <input readonly [(ngModel)]="total">
+  <span>Local:</span>
+  <input readonly [(ngModel)]="local">
+
+</div>
+
+<div>
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="filterText" placeholder="Filter">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="filteredSource" class="mat-elevation-z8">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.Id }} </td>
+    </ng-container>
+
+    <!-- First Column -->
+    <ng-container matColumnDef="First">
+      <th mat-header-cell *matHeaderCellDef> First </th>
+      <td mat-cell *matCellDef="let element"> {{element.First }} </td>
+    </ng-container>
+
+    <!-- Last Column -->
+    <ng-container matColumnDef="Last">
+      <th mat-header-cell *matHeaderCellDef> Last </th>
+      <td mat-cell *matCellDef="let element"> {{element.Last}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+
+  </table>
+
+
+</div>
